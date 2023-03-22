@@ -13,7 +13,6 @@ export const SearchPage = () => {
 
   return (
     <>
-    <Header />
       <div className='container'>
       <p className='p-search'>
         Se encontraron: <span>{pokemonFiltrado.length}</span>

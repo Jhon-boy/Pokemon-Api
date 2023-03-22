@@ -1,5 +1,5 @@
 //Rutas 
-import React , {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 //Firebase
@@ -15,40 +15,51 @@ import app from './server/firebase';
 //Crear cuentas 
 import { CreateCount } from './Forms/CreateCount'
 import { Login } from './Login/Login'
+import { Header } from './componentes'
+import { ProtectedRoute } from './Routes/ProtectedRoutes'
 
 const auth = getAuth(app);
 
-function AppRouter  () {
+function AppRouter() {
   const [usuario, setUsuario] = React.useState(null);
+
 
   onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
       setUsuario(usuarioFirebase);
-      
+
     } else {
       setUsuario(null);
     }
   });
 
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (usuarioFirebase) => {
-  //     if (usuarioFirebase) {
-  //       setUsuario(usuarioFirebase);
-        
-  //     } else {
-  //       setUsuario(null);
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    onAuthStateChanged(auth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
+        setUsuario(usuarioFirebase);
+  
+      } else {
+        setUsuario(null);
+      }
+    });
+  }, []);
 
   return (
-
     <Routes>
-      <Route path="/" element={<Login />}/>
-      <Route  path="/home" element={<Home  />}  />
-      <Route path='/pokemon/:id' element={<PokemonPage />} />
-      <Route path='/search' element={<SearchPage />} />
-      <Route  path='/register' element={<CreateCount />} />
+      <Route path="/login" element={<Login />} />
+      <Route >
+        <Route element={<ProtectedRoute usuario={usuario} />}>
+
+          <Route   path='/' element={<Header usuario={usuario} />} >
+            <Route index  element={<Home />} />
+            <Route path='pokemon/:id' element={<PokemonPage />} />
+            <Route path='search' element={<SearchPage />} />
+          </Route>
+
+        </Route>
+      </Route>
+
+      <Route path='/register' element={<CreateCount />} />
       <Route path='*' element={<ErrorPage />} />
     </Routes>
 

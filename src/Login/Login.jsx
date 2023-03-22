@@ -37,8 +37,7 @@ export const Login = (props) => {
         try {
             await signInWithEmailAndPassword(auth, emailRef, contraseñaRef);
             localStorage.setItem('credentials', auth);
-            console.log(emailRef)
-            navigateTo('/home')   
+            navigateTo('/');
         } catch (error) {
     alert('Correo o contraseña Invalido');
 }

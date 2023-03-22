@@ -4,26 +4,25 @@ import { PokemonContext } from '../context/PokemonContext'
 import { getAuth, signOut } from "firebase/auth";
 
 
-export const Header = ({user}) => { 
+export const Header = ({usuario}) => { 
 	const auth = getAuth();
     const context = useContext(PokemonContext);
     const { imputChange , valueSearch  , onResetForm } = useContext(PokemonContext);
-
 	const navigate = useNavigate();
     //Evento de forumalario 
+
     const onSearchSubmit = (e) => {
 		e.preventDefault();
-
 		navigate('/search', {
 			state: valueSearch 
 		});
-
 		onResetForm();
     } 
 
 	const logOut = () =>{
 		signOut(auth)
         .then(() => {
+			localStorage.removeItem('credentials');
 			navigate('/')
           }).catch((error) => {
             console.log(error);
@@ -68,7 +67,7 @@ export const Header = ({user}) => {
 
 					<button className='btn-search'>Buscar</button>
 				</form>
-				<span> {user}</span>
+				<span> {usuario.email}</span>
 				<button onClick={logOut} >Cerrar Sesión</button>
 			</header>
 
