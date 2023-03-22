@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useLocation } from 'react-router-dom';
 import { PokemonContext } from '../context/PokemonContext'
 import { CardPokemon } from '../componentes/CardPokemon'
+import { Header } from '../componentes';
 
 export const SearchPage = () => {
   const location = useLocation();
@@ -11,7 +12,9 @@ export const SearchPage = () => {
     pokemon.name.includes(location.state.toLowerCase()));
 
   return (
-    <div className='container'>
+    <>
+    <Header />
+      <div className='container'>
       <p className='p-search'>
         Se encontraron: <span>{pokemonFiltrado.length}</span>
       </p>
@@ -25,5 +28,7 @@ export const SearchPage = () => {
         }
       </div>
     </div>
+    </>
+    
   )
 }

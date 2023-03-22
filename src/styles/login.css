@@ -1,0 +1,27 @@
+.Ingreso{
+    height: 350px;
+    width: 400px;
+    margin-top: 150px;
+    border: 2px black solid;
+    border-radius: 5px;
+}
+.Ingreso button{
+    margin-left: -1%;
+}
+.mb-3{
+    margin-top: 7%;
+    width: 300px;
+
+}
+.Errores{
+    font-size: 10px;
+    color: red;
+}
+.NewCount {
+    color: rgb(100, 98, 98);
+
+}
+.NewCount:hover{
+    cursor: pointer;
+    color: black;
+}

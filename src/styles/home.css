@@ -1,0 +1,14 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: yellow;
+    color: black;
+}
+.nav-list {
+    display: flex;
+    justify-content: space-around;
+    width: 35%;
+    list-style: none;
+    cursor: pointer;
+    color: black;
+}

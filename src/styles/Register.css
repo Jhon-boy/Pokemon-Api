@@ -1,0 +1,59 @@
+
+.Registro {
+    margin-left: 35%;
+    width: 30%;
+    height: 550px;
+    margin-top: 7%; 
+    border: 1px solid black;
+    border-radius: 7px;
+
+}
+.Registro input {
+    margin: 30px 10px 0px 10px;
+    padding-top: 10px;
+    background-color: rgba(246, 245, 245, 0.975);
+}
+.Registro select{
+    margin: 30px 10px 0px 10px;
+    margin-right: 20px;
+    padding-top: 10px;
+    background-color: rgba(246, 245, 245, 0.975);
+}
+.Registro .title{
+    margin-left: 20px;
+    color: black;
+}
+.Registro .subtitle{
+    margin-left: 20px;
+    color: gray;
+}
+
+.DatosP{
+    display: flex;
+}
+.Datos{
+    margin-right: 20px;
+}
+.btn {
+    display: inline-block;
+    margin-top: 5%;
+    margin-left: 35%;
+}
+.btn .btnRegistar{
+    background-color: yellow;
+    color: black;
+    margin: 0 0 10px 0;
+    border: 1px solid black;
+    border-radius: 7px;
+    width: 125px;
+    height: 40px;
+}
+.btn .btnRegistar:hover{
+    cursor: pointer;
+    background-color: rgb(223, 223, 55);
+}
+.btn .btnVolver{
+    border: none;
+    background-color: white;
+    border-bottom:  1px solid black;
+}

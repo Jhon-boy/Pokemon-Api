@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import { Outlet , Link, useNavigate} from 'react-router-dom'
 import { PokemonContext } from '../context/PokemonContext'
+import { getAuth, signOut } from "firebase/auth";
 
 
-export const Header = () => {
+export const Header = ({user}) => { 
+	const auth = getAuth();
     const context = useContext(PokemonContext);
     const { imputChange , valueSearch  , onResetForm } = useContext(PokemonContext);
 
@@ -18,6 +20,16 @@ export const Header = () => {
 
 		onResetForm();
     } 
+
+	const logOut = () =>{
+		signOut(auth)
+        .then(() => {
+			navigate('/')
+          }).catch((error) => {
+            console.log(error);
+          });
+	}
+
     return (
         <>
         <header className='container'>
@@ -56,6 +68,8 @@ export const Header = () => {
 
 					<button className='btn-search'>Buscar</button>
 				</form>
+				<span> {user}</span>
+				<button onClick={logOut} >Cerrar Sesión</button>
 			</header>
 
             <Outlet />
