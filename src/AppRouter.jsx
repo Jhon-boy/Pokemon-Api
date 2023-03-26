@@ -38,7 +38,11 @@ function AppRouter() {
       if (usuarioFirebase) {
         setUsuario(usuarioFirebase);
   
-      } else {
+      } else if(usuario ==null ){
+        let loogead = localStorage.getItem('credentials');;
+        setUsuario(loogead);
+        console.log("Usuario logeado desde el localStorage + ");
+      } else{
         setUsuario(null);
       }
     });
