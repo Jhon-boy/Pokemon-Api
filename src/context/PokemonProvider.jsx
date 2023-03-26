@@ -75,14 +75,6 @@ export const PokemonProvider = ({ children }) => {
         return data;
     };
 
-    //Carga todos los datos de la API
-    useEffect(() => {
-        getAllPokemon()
-    }, [offset]);
-
-    useEffect(() => {
-        getGlobalPokemon()
-    }, []);
 
 
     //Btn CARGAR MAS
@@ -135,6 +127,16 @@ export const PokemonProvider = ({ children }) => {
          setFilterPokemon([ ...resultadoFilter])
         }
     }
+        //Carga todos los datos de la API
+        useEffect(() => {
+            getAllPokemon()
+            // eslint-disable-next-line
+        }, [offset]);
+    
+        useEffect(() => {
+            getGlobalPokemon()
+        }, []);
+    
 
     return (
         //Aqui pasamos los valores a todas las aplicaciones 
