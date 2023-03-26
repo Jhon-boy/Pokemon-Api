@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { useLocation } from 'react-router-dom';
 import { PokemonContext } from '../context/PokemonContext'
 import { CardPokemon } from '../componentes/CardPokemon'
-import { Header } from '../componentes';
 
 export const SearchPage = () => {
   const location = useLocation();

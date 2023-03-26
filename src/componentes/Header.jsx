@@ -7,6 +7,7 @@ import { getAuth, signOut } from "firebase/auth";
 export const Header = ({usuario}) => { 
 	const auth = getAuth();
     const context = useContext(PokemonContext);
+	console.log(context);
     const { imputChange , valueSearch  , onResetForm } = useContext(PokemonContext);
 	const navigate = useNavigate();
     //Evento de forumalario 
