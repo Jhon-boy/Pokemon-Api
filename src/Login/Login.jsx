@@ -1,10 +1,10 @@
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../styles/login.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import app from '../server/firebase';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword , onAuthStateChanged } from 'firebase/auth'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 
@@ -25,6 +25,9 @@ const CredencialesInicial = {
 //Props
 
 export const Login = (props) => {
+    
+  const [usuario, setUsuario] = React.useState(null);
+
     const history = useNavigate();
 
     const navigateTo = (path) => {
@@ -37,13 +40,32 @@ export const Login = (props) => {
         try {
             await signInWithEmailAndPassword(auth, emailRef, contraseñaRef);
             localStorage.setItem('credentials', auth);
+            sessionStorage.setItem('credentials', auth);
             navigateTo('/');
         } catch (error) {
     alert('Correo o contraseña Invalido');
 }
+ //Aqui haremos la verificacion bro :3
+}
+useEffect(() => {
+    onAuthStateChanged(auth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
+        setUsuario(usuarioFirebase);
+       console.log("Estamos en useeffect");
+      }  else{
+        setUsuario(null);
+      }
+    
     }
+    )
+});
 return (
-    <div>
+ 
+    <>
+        {
+            usuario ? 
+            navigateTo('/')
+            :  <div>
         <Formik
             initialValues={CredencialesInicial}
             //Yup Validaciones esquemas
@@ -114,7 +136,8 @@ return (
         </Formik>
 
     </div>
-
+        }
+    </>
 );
 }
 

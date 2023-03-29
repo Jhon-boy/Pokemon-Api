@@ -23,28 +23,29 @@ const auth = getAuth(app);
 function AppRouter() {
   const [usuario, setUsuario] = React.useState(null);
 
-
-  onAuthStateChanged(auth, (usuarioFirebase) => {
+  // const logeo = () =>{
+      onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
       setUsuario(usuarioFirebase);
-
     } else {
       setUsuario(null);
     }
   });
 
+  // }
+
+
   useEffect(() => {
     onAuthStateChanged(auth, (usuarioFirebase) => {
       if (usuarioFirebase) {
         setUsuario(usuarioFirebase);
-  
-      } else if(usuario ==null ){
-        let loogead = localStorage.getItem('credentials');;
-        setUsuario(loogead);
-      } else{
+       console.log("Estamos en useeffect");
+      }  else{
         setUsuario(null);
       }
-    });
+    
+    }
+    );
   });
 
   return (
@@ -52,13 +53,11 @@ function AppRouter() {
       <Route path="/login" element={<Login />} />
       <Route >
         <Route element={<ProtectedRoute usuario={usuario} />}>
-
           <Route   path='/' element={<Header usuario={usuario} />} >
             <Route index  element={<Home />} />
             <Route path='pokemon/:id' element={<PokemonPage />} />
             <Route path='search' element={<SearchPage />} />
           </Route>
-
         </Route>
       </Route>
 
