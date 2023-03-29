@@ -3,14 +3,16 @@ import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 //Firebase
-import { PokemonPage } from './pages/PokemonPage'
+import app from './server/firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 ////Componentes 
+import { PokemonPage } from './pages/PokemonPage'
 import { SearchPage } from './pages/SearchPage'
 import { Home } from './pages/Home'
 import { ErrorPage } from './Error/ErrorPage'
-import app from './server/firebase';
+//FIREBASE
+
 
 //Crear cuentas 
 import { CreateCount } from './Forms/CreateCount'
