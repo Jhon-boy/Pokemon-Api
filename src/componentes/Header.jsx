@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import { PokemonContext } from '../context/PokemonContext'
 import { getAuth, signOut } from "firebase/auth";
@@ -6,11 +6,13 @@ import { BsFilter } from "react-icons/bs";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom'
+import { getUsuario } from '../server/firebaseController';
 
 export const Header = ({ usuario }) => {
 	const auth = getAuth();
 	const { context, active, setActive } = useContext(PokemonContext);
 	const { imputChange, valueSearch, onResetForm } = useContext(PokemonContext);
+	const [emailU, setEmailU] = useState('')
 	const navigate = useNavigate();
 	const onSearchSubmit = (e) => {
 		e.preventDefault();
@@ -33,6 +35,17 @@ export const Header = ({ usuario }) => {
 				console.log(error);
 			});
 	}
+	const MostrarE = async () =>{
+		getUsuario(usuario.email)
+		.then((user) => setEmailU(user))
+		.catch((e) =>
+			alert('Error + ',e)
+		)
+	} 
+  useEffect(() => {
+	MostrarE();
+  })
+  
 
 	return (
 		<>
@@ -48,8 +61,7 @@ export const Header = ({ usuario }) => {
 						alt='Logo Pokedex'
 					/>
 				</Link>
-				<span> {usuario.email}</span>
-				{/* <button className='btnCerrar' onClick={logOut} >Cerrar Sesión</button> */}
+				<h5> Hola, {emailU}</h5>
 				<button className='btnCerrar' onClick={handleShow} >Cerrar Sesión</button>
 			</header>
 

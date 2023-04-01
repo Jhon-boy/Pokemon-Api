@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { useNavigate} from 'react-router-dom'
 import '../styles/Register.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
@@ -6,7 +6,7 @@ import * as  Yup from 'yup'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import app from '../server/firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-
+import { AñadirUsuario } from '../server/firebaseController';
 
 // Aqui traemos la funcion que permite obtener el registro de sesiion 
 const auth = getAuth(app)
@@ -14,6 +14,7 @@ const auth = getAuth(app)
 //Proceso de creacion de cuenta
 export const CreateCount = () => {
     //Modelo de usuario 
+    const [user, setUser] = useState({nombre:'', apellido:'', sexo:'', correo:''});
 
     //Valores iniciales 
     const initialValues = {
@@ -50,8 +51,16 @@ export const CreateCount = () => {
         e.preventDefault();
         const emailRef = e.target.email.value;
         const passwordRef = e.target.password.value;
+        user.nombre = e.target.usuario.value;
+        user.apellido = e.target.apellido.value;
+        user.sexo = e.target.sexo.value;
+        user.correo = e.target.email.value;
         try {
             createUserWithEmailAndPassword(auth, emailRef, passwordRef);
+          await  AñadirUsuario(user).catch(e =>{
+                alert('Ha ocurrido un error !');
+            });
+             
             history('/');
             localStorage.setItem('credentials', auth);
         } catch (error) {
@@ -85,6 +94,7 @@ export const CreateCount = () => {
                 {({
                     errors,
                     touched,
+                    values
                 }) => (
                     <Form onSubmit={CreateUser} >
                         <div className='DatosP'>
@@ -107,6 +117,7 @@ export const CreateCount = () => {
                             <Field
                                 type='text'
                                 placeholder='Apellido'
+                                
                                 className="form-control"
                                 id='apellido'
                                 name='apellido'
@@ -124,11 +135,14 @@ export const CreateCount = () => {
                                 as="select"
                                 className="form-select"
                                 aria-label="Default select example"
-                                name="sexo">
-
-                                <option value="1">Mujer</option>
-                                <option value="2">Hombre</option>
-                                <option value="3">Otro</option>
+                                name="sexo"
+                                id="sexo"
+                    
+                                >
+                            
+                                <option value="Femenino">Mujer</option>
+                                <option value="Masculino">Hombre</option>
+                                <option value="Otro">Otro</option>
                             </Field>
 
 
@@ -138,6 +152,7 @@ export const CreateCount = () => {
                                 className="form-control"
                                 id='email'
                                 name='email'
+                             
                             />
                             {
                                 errors.email && touched.email &&
