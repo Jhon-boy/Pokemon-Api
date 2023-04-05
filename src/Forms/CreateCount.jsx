@@ -62,6 +62,7 @@ export const CreateCount = () => {
             });
              
             history('/');
+            setUser(null);
             localStorage.setItem('credentials', auth);
         } catch (error) {
             alert('No se pudo crear su cuenta');
