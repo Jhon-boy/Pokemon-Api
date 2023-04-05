@@ -7,6 +7,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom'
 import { getUsuario } from '../server/firebaseController';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import { BsFillPersonXFill, BsClipboardPlus, BsSearch, BsPersonAdd}  from "react-icons/bs"
 
 export const Header = ({ usuario }) => {
 	const auth = getAuth();
@@ -25,6 +28,7 @@ export const Header = ({ usuario }) => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+	const titlee =  emailU ? ("Hola, "+ emailU) : ("Hola, "+ usuario.email);
 
 	console.log(context);
 	const logOut = () => {
@@ -35,17 +39,17 @@ export const Header = ({ usuario }) => {
 				console.log(error);
 			});
 	}
-	const MostrarE = async () =>{
+	const MostrarE = async () => {
 		getUsuario(usuario.email)
-		.then((user) => setEmailU(user))
-		.catch((e) =>
-			alert('Error + ',e)
-		)
-	} 
-  useEffect(() => {
-	MostrarE();
-  })
-  
+			.then((user) => setEmailU(user))
+			.catch((e) =>
+				alert('Error + ', e)
+			)
+	}
+	useEffect(() => {
+		MostrarE();
+	})
+
 
 	return (
 		<>
@@ -61,8 +65,21 @@ export const Header = ({ usuario }) => {
 						alt='Logo Pokedex'
 					/>
 				</Link>
-				<h5> Hola, {emailU}</h5>
-				<button className='btnCerrar' onClick={handleShow} >Cerrar Sesión</button>
+
+				<DropdownButton
+					align="end"
+					title={titlee}
+					id="dropdown-menu-align-end"
+				>
+					<Dropdown.Item eventKey="1"><BsPersonAdd />	Ver Perfil</Dropdown.Item>
+					<Dropdown.Item eventKey="2"><BsClipboardPlus /> Información</Dropdown.Item>
+					<Dropdown.Item eventKey="3"><BsSearch /> Pokemon Api</Dropdown.Item>
+					<Dropdown.Divider />
+					<button className='btnCerrar'  onClick={handleShow} > <BsFillPersonXFill /> Cerrar Sesión</button>
+				</DropdownButton>
+
+
+
 			</header>
 
 			<div className='formSearch'>
