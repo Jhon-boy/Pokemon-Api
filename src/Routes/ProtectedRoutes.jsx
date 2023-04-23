@@ -3,7 +3,6 @@ export   const ProtectedRoute = ({children, usuario}) =>{
    
 
 if(!usuario){
-    console.log("Protected Route: "+ usuario);
     return <Navigate to="/login" />
 } 
 

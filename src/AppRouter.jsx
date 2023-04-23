@@ -43,7 +43,6 @@ function AppRouter() {
     onAuthStateChanged(auth, (usuarioFirebase) => {
       if (usuarioFirebase) {
         setUsuario(usuarioFirebase);
-       console.log("Estamos en useeffect");
       }  else{
         setUsuario(null);
       }

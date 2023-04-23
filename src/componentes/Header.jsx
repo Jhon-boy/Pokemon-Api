@@ -29,7 +29,8 @@ export const Header = ({ usuario }) => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.nombre);
+	const titlee = emailU ? ("Hola , " + emailU) : ("Hola, " + usuario.email);
+
 
 	console.log(context);
 	const logOut = () => {
@@ -46,6 +47,7 @@ export const Header = ({ usuario }) => {
 			.catch((e) =>
 				console('Error + ', e)
 			)
+			console.log('Usuario MOSTRARe(): ' + emailU);
 	}
 	useEffect(() => {
 		MostrarE();
