@@ -118,7 +118,6 @@ export const CreateCount = () => {
                             <Field
                                 type='text'
                                 placeholder='Apellido'
-                                
                                 className="form-control"
                                 id='apellido'
                                 name='apellido'
@@ -202,8 +201,6 @@ export const CreateCount = () => {
                     </Form>
                 )
                 }
-
-
             </Formik>
 
 

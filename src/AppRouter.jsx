@@ -11,14 +11,16 @@ import { PokemonPage } from './pages/PokemonPage'
 import { SearchPage } from './pages/SearchPage'
 import { Home } from './pages/Home'
 import { ErrorPage } from './Error/ErrorPage'
-//FIREBASE
-
+import { InfoPage } from './pages/InfoPage'
 
 //Crear cuentas 
 import { CreateCount } from './Forms/CreateCount'
 import { Login } from './Login/Login'
 import { Header } from './componentes'
 import { ProtectedRoute } from './Routes/ProtectedRoutes'
+import { Perfil } from './pages/Perfil';
+import { ContactForm } from './Forms/ContactForm';
+
 
 const auth = getAuth(app);
 
@@ -59,6 +61,9 @@ function AppRouter() {
             <Route index  element={<Home />} />
             <Route path='pokemon/:id' element={<PokemonPage />} />
             <Route path='search' element={<SearchPage />} />
+            <Route path='infoPage' element={ <InfoPage />} />
+            <Route path='contactos' element={ <ContactForm />} />
+            <Route path='perfil' element={ <Perfil usuario={usuario}/>} />
           </Route>
         </Route>
       </Route>
@@ -70,45 +75,3 @@ function AppRouter() {
   )
 }
 export default AppRouter;
-
-// {
-//   VERSION 2:
-//   <Routes>
-
-//   <Route path='/'>
-//     {
-//       usuario ?
-//         <Navigate from='/' to='/home' replace  />
-//         :
-//         <Navigate from='/' to='/login' />
-//     }
-//   </Route>
-//   {/* ----------LOGIN--------- */}
-//   <Route exact path='/login'>
-//     {
-//       usuario ?
-//         <Home correoUsuario={usuario.email} />
-//         :
-//         <Login />
-//     }
-//   </Route>
-
-//   {/* ----------HOME------------------- */}
-//   <Route exact path='/home'>
-//     {
-//       usuario ?
-//         <Home correoUsuario={usuario.email} />
-//         :
-//         <Login />
-//     }
-//   </Route>
-
-//   {/* ------------------------------ */}
-//   <Route path='/pokemon/:id' element={<PokemonPage />} />
-//   <Route path='/search' element={<SearchPage />} />
-//   <Route exact path='/register' element={<CreateCount />} />
-//   <Route path='*' element={<ErrorPage />} />
-// </Routes>
-
-
-// }

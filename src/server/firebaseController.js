@@ -17,3 +17,13 @@ export const getUsuario = async user => {
     // console.log("Lo encontramos + ",x , 'Y su correo es ', x.nombre);
     return x.nombre;
 }
+
+export const DevolverUser = async user =>{
+  const querySnapshot = await getDocs(collection(db, "usuarios"));
+    const userE = querySnapshot.docs.map(doc =>{
+      return {...doc.data(), id: doc.id}
+    })
+    const x = userE.find(doc => doc.correo === user);
+   console.log('Devolviendo:' + x.nombre);  
+    return x;
+}

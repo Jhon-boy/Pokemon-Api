@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { PokemonContext } from '../context/PokemonContext';
 import { BsFilter } from "react-icons/bs";
+import Form from 'react-bootstrap/Form';
 
 export const FilterBar = () => {
 	const { active, hanndlCheckBox, setActive } = useContext(PokemonContext);
@@ -8,15 +9,15 @@ export const FilterBar = () => {
 		<div>
 			<div className={`container-filters ${active ? 'active' : ''}`} >
 				<div className='filter-by-type'>
-				<div className='group-filter'>
+					<div className='group-filter'>
 						<div className='icon-filter' onClick={() => setActive(!active)}>
 							<span className='filterr'> <BsFilter style={{ color: 'black', fontSize: '35px' }} /> </span>
 						</div>
 					</div>
 					<span>Tipo</span>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='grass'
 							id='grass'
@@ -24,8 +25,8 @@ export const FilterBar = () => {
 						<label htmlFor='grass'>Planta</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='fire'
 							id='fire'
@@ -33,8 +34,8 @@ export const FilterBar = () => {
 						<label htmlFor='fire'>Fuego</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='bug'
 							id='bug'
@@ -42,8 +43,8 @@ export const FilterBar = () => {
 						<label htmlFor='bug'>Bicho</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='fairy'
 							id='fairy'
@@ -51,8 +52,8 @@ export const FilterBar = () => {
 						<label htmlFor='fairy'>Hada</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='dragon'
 							id='dragon'
@@ -60,8 +61,8 @@ export const FilterBar = () => {
 						<label htmlFor='dragon'>Dragón</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='shadow'
 							id='shadow'
@@ -69,8 +70,8 @@ export const FilterBar = () => {
 						<label htmlFor='shadow'>Fantasma</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='ground'
 							id='ground'
@@ -78,8 +79,8 @@ export const FilterBar = () => {
 						<label htmlFor='ground'>Tierra</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='normal'
 							id='normal'
@@ -87,8 +88,8 @@ export const FilterBar = () => {
 						<label htmlFor='normal'>Normal</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='psychic'
 							id='psychic'
@@ -96,8 +97,8 @@ export const FilterBar = () => {
 						<label htmlFor='psychic'>Psíquico</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='steel'
 							id='steel'
@@ -105,8 +106,8 @@ export const FilterBar = () => {
 						<label htmlFor='steel'>Acero</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='dark'
 							id='dark'
@@ -114,8 +115,8 @@ export const FilterBar = () => {
 						<label htmlFor='dark'>Siniestro</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='electric'
 							id='electric'
@@ -123,8 +124,8 @@ export const FilterBar = () => {
 						<label htmlFor='electric'>Eléctrico</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='fighting'
 							id='fighting'
@@ -132,8 +133,8 @@ export const FilterBar = () => {
 						<label htmlFor='fighting'>Lucha</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='flying'
 							id='flying'
@@ -141,8 +142,8 @@ export const FilterBar = () => {
 						<label htmlFor='flying'>Volador</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='ice'
 							id='ice'
@@ -150,8 +151,8 @@ export const FilterBar = () => {
 						<label htmlFor='ice'>Hielo</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='poison'
 							id='poison'
@@ -159,8 +160,8 @@ export const FilterBar = () => {
 						<label htmlFor='poison'>Veneno</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='rock'
 							id='rock'
@@ -168,8 +169,8 @@ export const FilterBar = () => {
 						<label htmlFor='rock'>Roca</label>
 					</div>
 					<div className='group-type'>
-						<input
-							type='checkbox'
+						<Form.Check
+							type='switch'
 							onChange={hanndlCheckBox}
 							name='water'
 							id='water'

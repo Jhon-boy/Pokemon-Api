@@ -40,7 +40,7 @@
     margin-left: 35%;
 }
 .btn .btnRegistar{
-    background-color: yellow;
+    background-color: rgb(18, 122, 150);
     color: black;
     margin: 0 0 10px 0;
     border: 1px solid black;
@@ -50,10 +50,35 @@
 }
 .btn .btnRegistar:hover{
     cursor: pointer;
-    background-color: rgb(223, 223, 55);
+    background-color: rgb(13, 196, 242);
 }
 .btn .btnVolver{
     border: none;
     background-color: white;
     border-bottom:  1px solid black;
+}
+.apellido{
+    margin-left: 30px;
+}
+#apellido{
+    margin-left: 35px;
+}
+.Update{
+    background-color: white;
+    margin-left: 30%;
+    width: 36%;
+    position: absolute;
+    height: 550px;
+    margin-top: 1%; 
+    border: 1px solid black;
+    border-radius: 7px;
+}
+.titlesUser{
+    margin-left: 20px;
+    margin-top: 25px;
+    color: rgb(81, 80, 80);
+}
+.mainUser input{
+    margin-top: -5px;
+    margin-right: 10px;
 }
