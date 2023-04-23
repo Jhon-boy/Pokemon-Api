@@ -21,9 +21,6 @@ import { ProtectedRoute } from './Routes/ProtectedRoutes'
 import { Perfil } from './pages/Perfil';
 import { ContactForm } from './Forms/ContactForm';
 
-// Importando DB
-
-
 
 const auth = getAuth(app);
 
@@ -40,10 +37,13 @@ function AppRouter() {
   });
 
   // }
+
+
   useEffect(() => {
     onAuthStateChanged(auth, (usuarioFirebase) => {
       if (usuarioFirebase) {
         setUsuario(usuarioFirebase);
+       console.log("Estamos en useeffect");
       }  else{
         setUsuario(null);
       }
