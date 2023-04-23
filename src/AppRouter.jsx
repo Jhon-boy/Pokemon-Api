@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom'
 //Firebase
 import app from './server/firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { addDoc, collection, getDocs} from "firebase/firestore"
+import { db } from './server/firebase';
 
 ////Componentes 
 import { PokemonPage } from './pages/PokemonPage'
@@ -20,6 +22,9 @@ import { Header } from './componentes'
 import { ProtectedRoute } from './Routes/ProtectedRoutes'
 import { Perfil } from './pages/Perfil';
 import { ContactForm } from './Forms/ContactForm';
+
+// Importando DB
+
 
 
 const auth = getAuth(app);
@@ -37,8 +42,6 @@ function AppRouter() {
   });
 
   // }
-
-
   useEffect(() => {
     onAuthStateChanged(auth, (usuarioFirebase) => {
       if (usuarioFirebase) {

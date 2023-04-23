@@ -6,9 +6,10 @@ import { BsFilter } from "react-icons/bs";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom'
-import { getUsuario } from '../server/firebaseController';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { collection, getDocs } from "firebase/firestore"
+import { db } from '../server/firebase';
 
 import { BsFillPersonXFill, BsSearch, BsPersonAdd } from "react-icons/bs"
 
@@ -40,17 +41,28 @@ export const Header = ({ usuario }) => {
 				console.log(error);
 			});
 	}
-	const MostrarE = async () => {
-		await	getUsuario(usuario.email)
-			.then((user) => setEmailU(user))
-			.catch((e) =>
-				console('Error + ', e)
-			)
-			console.log('Usuario MOSTRARe(): ' + emailU);
+
+	async function getUsuario(user) {
+		const querySnapshot = await getDocs(collection(db, "usuarios"));
+		const userE = querySnapshot.docs.map(doc => {
+			return { ...doc.data(), id: doc.id }
+		})
+		const x = userE.find(doc => doc.correo === user);
+		console.log("GETUSUARIO() ", x, 'Y su nombre es ', x.nombre);
+		setEmailU(x.nombre);
+
 	}
+
+	// async function GuardarUsuario(){
+	// 	// eslint-disable-next-line no-const-assign
+	// 	emailU= await getUsuario(usuario.email);
+	// }
 	useEffect(() => {
-		MostrarE();
+		//   GuardarUsuario();
+		getUsuario(usuario.email);
+		
 	})
+
 	const titlee = emailU ? ("Hola , " + emailU) : ("Hola, " + usuario.email);
 
 	return (
