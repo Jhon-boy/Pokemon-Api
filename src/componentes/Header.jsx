@@ -29,7 +29,6 @@ export const Header = ({ usuario }) => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const titlee = emailU ? ("Hola , " + emailU) : ("Hola, " + usuario.email);
 
 
 	console.log(context);
@@ -42,7 +41,7 @@ export const Header = ({ usuario }) => {
 			});
 	}
 	const MostrarE = async () => {
-		getUsuario(usuario.email)
+		await	getUsuario(usuario.email)
 			.then((user) => setEmailU(user))
 			.catch((e) =>
 				console('Error + ', e)
@@ -52,7 +51,7 @@ export const Header = ({ usuario }) => {
 	useEffect(() => {
 		MostrarE();
 	})
-
+	const titlee = emailU ? ("Hola , " + emailU) : ("Hola, " + usuario.email);
 
 	return (
 		<>
