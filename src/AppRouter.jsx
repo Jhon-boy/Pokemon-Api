@@ -5,8 +5,6 @@ import { Routes, Route } from 'react-router-dom'
 //Firebase
 import app from './server/firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { addDoc, collection, getDocs} from "firebase/firestore"
-import { db } from './server/firebase';
 
 ////Componentes 
 import { PokemonPage } from './pages/PokemonPage'

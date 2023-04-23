@@ -60,6 +60,7 @@ export const Header = ({ usuario }) => {
 	useEffect(() => {
 		//   GuardarUsuario();
 		getUsuario(usuario.email);
+		console.log(emailU)
 		
 	})
 
