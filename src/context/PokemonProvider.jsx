@@ -134,7 +134,7 @@ export const PokemonProvider = ({ children }) => {
         }, [offset]);
     
         useEffect(() => {
-            getGlobalPokemon()
+            getGlobalPokemon();
         }, []);
     
 

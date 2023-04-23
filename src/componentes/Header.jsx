@@ -14,7 +14,7 @@ import { BsFillPersonXFill, BsSearch, BsPersonAdd } from "react-icons/bs"
 
 export const Header = ({ usuario }) => {
 	const auth = getAuth();
-	const { context, active, setActive } = useContext(PokemonContext);
+	const { active, setActive } = useContext(PokemonContext);
 	const { imputChange, valueSearch, onResetForm } = useContext(PokemonContext);
 	const [emailU, setEmailU] = useState('')
 	const navigate = useNavigate();
@@ -29,9 +29,8 @@ export const Header = ({ usuario }) => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.email);
+	let titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.email);
 
-	console.log(context);
 	const logOut = () => {
 		signOut(auth)
 			.then(() => {
@@ -46,9 +45,11 @@ export const Header = ({ usuario }) => {
 			.catch((e) =>
 				console('Error + ', e)
 			)
+			titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.email);	
 	}
 	useEffect(() => {
-		MostrarE();
+		
+		console.log('UseEffect de Header: ',emailU);
 	})
 
 
@@ -119,6 +120,7 @@ export const Header = ({ usuario }) => {
 							</div>
 						</div>
 					</div>
+					<button onClick={() => MostrarE()}>Obtener Email</button>
 
 
 				</header>
