@@ -29,7 +29,7 @@ export const Header = ({ usuario }) => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.email);
+	const titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.nombre);
 
 	console.log(context);
 	const logOut = () => {
@@ -44,7 +44,7 @@ export const Header = ({ usuario }) => {
 		getUsuario(usuario.email)
 			.then((user) => setEmailU(user))
 			.catch((e) =>
-				alert('Error + ', e)
+				console('Error + ', e)
 			)
 	}
 	useEffect(() => {
