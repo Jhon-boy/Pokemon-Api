@@ -30,7 +30,7 @@ export const Header = ({ usuario }) => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	let titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.email);
+	let titlee = emailU ? ("Hola, " + emailU) : (usuario.email);
 
 	const logOut = () => {
 		signOut(auth)
@@ -41,24 +41,24 @@ export const Header = ({ usuario }) => {
 			});
 	}
 	const MostrarE = async () => {
-	await	getUsuario(usuario.email)
+		await getUsuario(usuario.email)
 			.then((user) => setEmailU(user))
 			.catch((e) =>
 				console('Error + ', e)
 			)
-			titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.email);	
-			console.log("GetUsuario()", emailU);
+		titlee = emailU ? ("Hola, " + emailU) : (usuario.email);
+		console.log("GetUsuario()", emailU);
 	}
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			MostrarE();
-		  }, 1000);
-		  
-		  return () => clearTimeout(timer)
-		
+		}, 1000);
+
+		return () => clearTimeout(timer)
+
 	},)
-	
-	
+
+
 
 	return (
 		<>
