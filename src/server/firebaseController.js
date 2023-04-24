@@ -14,7 +14,7 @@ export const getUsuario = async user => {
     return { ...doc.data(), id: doc.id }
   })
   const x = userE.find(doc => doc.correo === user);
-  console.log("Lo encontramos + ", x, 'Y su correo es ', x.nombre);
+  // console.log("Lo encontramos + ", x, 'Y su correo es ', x.nombre);
   return x.nombre;
 }
 

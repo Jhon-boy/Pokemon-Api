@@ -12,6 +12,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 
 import { BsFillPersonXFill, BsSearch, BsPersonAdd } from "react-icons/bs"
 
+
 export const Header = ({ usuario }) => {
 	const auth = getAuth();
 	const { active, setActive } = useContext(PokemonContext);
@@ -46,13 +47,19 @@ export const Header = ({ usuario }) => {
 				console('Error + ', e)
 			)
 			titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.email);	
+			console.log("GetUsuario()", emailU);
 	}
 	useEffect(() => {
-		window.onload = MostrarE();
-		console.log('UseEffect de Header: ',emailU);
-	})
+		const timer = setTimeout(() => {
+			MostrarE();
+		  }, 1000);
+		  
+		  return () => clearTimeout(timer)
+		
+	},)
+	
+	
 
-	window.onload = MostrarE();
 	return (
 		<>
 			<div className='cabecera'>
