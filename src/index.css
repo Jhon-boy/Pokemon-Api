@@ -829,3 +829,6 @@ border-radius: 25px;
 	margin-left: 120px;
 	color:  #0a4c53;
 }
+.modalFooter{
+	display: flex;
+}

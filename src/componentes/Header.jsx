@@ -107,7 +107,7 @@ export const Header = ({ usuario }) => {
 
 					</div>
 					<Link to='/' className='listasH' > Inicio</Link>
-					<Link to='/Contactos' className='listasH' >  Contacto</Link>
+					<Link to='/Contactos' className='listasH' >  Contactos</Link>
 					<Link to='/infoPage' className='listasH' >  Información </Link>
 					<div>
 

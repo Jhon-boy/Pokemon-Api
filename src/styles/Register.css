@@ -40,7 +40,7 @@
     margin-left: 35%;
 }
 .btn .btnRegistar{
-    background-color: rgb(18, 122, 150);
+    background-color: rgb(28, 186, 230);
     color: black;
     margin: 0 0 10px 0;
     border: 1px solid black;
@@ -50,7 +50,7 @@
 }
 .btn .btnRegistar:hover{
     cursor: pointer;
-    background-color: rgb(13, 196, 242);
+    background-color: rgb(26, 125, 150);
 }
 .btn .btnVolver{
     border: none;

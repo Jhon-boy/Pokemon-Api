@@ -7,6 +7,7 @@ import app from '../server/firebase';
 import { getAuth, signInWithEmailAndPassword , onAuthStateChanged } from 'firebase/auth'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const auth = getAuth(app)
 const loginSchema = Yup.object().shape(
@@ -41,9 +42,22 @@ export const Login = (props) => {
             await signInWithEmailAndPassword(auth, emailRef, contraseñaRef);
             localStorage.setItem('credentials', auth);
             sessionStorage.setItem('credentials', auth);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Bienvenido',
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true
+                
+              })
             navigateTo('/');
         } catch (error) {
-    alert('Correo o contraseña Invalido');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Verifique correo o contraseña',
+            })
 }
  //Aqui haremos la verificacion bro :3
 }

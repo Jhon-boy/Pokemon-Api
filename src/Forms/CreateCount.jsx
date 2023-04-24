@@ -1,5 +1,5 @@
-import React, { useState} from 'react';
-import { useNavigate} from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import '../styles/Register.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as  Yup from 'yup'
@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import app from '../server/firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { AñadirUsuario } from '../server/firebaseController';
+import Swal from 'sweetalert2'
 
 // Aqui traemos la funcion que permite obtener el registro de sesiion 
 const auth = getAuth(app)
@@ -14,7 +15,8 @@ const auth = getAuth(app)
 //Proceso de creacion de cuenta
 export const CreateCount = () => {
     //Modelo de usuario 
-    const [user, setUser] = useState({nombre:'', apellido:'', sexo:'', correo:''});
+    const [user, setUser] = useState({ nombre: '', apellido: '', sexo: '', correo: '' });
+
 
     //Valores iniciales 
     const initialValues = {
@@ -43,7 +45,7 @@ export const CreateCount = () => {
                 .matches(/[A-Z]/, 'Se necesita al menos una letra [A-Z]')
                 .required("Campo Obligatorio"),
             confirm: Yup.string()
-            .oneOf([Yup.ref('password'), null], 'La contraseña debe coincidir'),
+                .oneOf([Yup.ref('password'), null], 'La contraseña debe coincidir'),
         }
     )
     // --------------------------- Funcion que permite registrar al usuario
@@ -55,23 +57,50 @@ export const CreateCount = () => {
         user.apellido = e.target.apellido.value;
         user.sexo = e.target.sexo.value;
         user.correo = e.target.email.value;
-        try {
-            createUserWithEmailAndPassword(auth, emailRef, passwordRef);
-          await  AñadirUsuario(user).catch(e =>{
-                alert('Ha ocurrido un error !');
-            });
-             
-            history('/');
-            setUser(null);
-            localStorage.setItem('credentials', auth);
-        } catch (error) {
-            alert('No se pudo crear su cuenta');
+        const hayCampoVacio = Object.values(user).some(valor => !valor);
+        if (hayCampoVacio) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Verifique que los campos esten completos',
+            })
+        } else {
+            try {
+                createUserWithEmailAndPassword(auth, emailRef, passwordRef);
+                await AñadirUsuario(user).catch(e => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No se ha podido crear su Cuenta!!',
+                        footer: 'Intente de nuevo'
+                    })
+                });
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Cuenta creada Correctamente',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    timerProgressBar: true
+                  })
+                  history('/');
+                setUser(null);
+                localStorage.setItem('credentials', auth);
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No se ha podido crear su Cuenta!!',
+                    footer: 'Intente de nuevo'
+                })
+            }
         }
+
     }
 
 
     //Funcion de routers para la navegacion 
-    const history = useNavigate ();
+    const history = useNavigate();
     const navigateTo = (path) => {
         history(path);
     }
@@ -137,9 +166,9 @@ export const CreateCount = () => {
                                 aria-label="Default select example"
                                 name="sexo"
                                 id="sexo"
-                    
-                                >
-                            
+
+                            >
+
                                 <option value="Femenino">Mujer</option>
                                 <option value="Masculino">Hombre</option>
                                 <option value="Otro">Otro</option>
@@ -152,7 +181,7 @@ export const CreateCount = () => {
                                 className="form-control"
                                 id='email'
                                 name='email'
-                             
+
                             />
                             {
                                 errors.email && touched.email &&
@@ -167,7 +196,7 @@ export const CreateCount = () => {
                                 className="form-control"
                                 id='password'
                                 name='password'
-                        
+
                             />
                             {
                                 errors.password && touched.password &&
@@ -182,7 +211,7 @@ export const CreateCount = () => {
                                 className="form-control"
                                 id='confirm'
                                 name='confirm'
-                         
+
                             />
                             {
                                 errors.confirm && touched.confirm &&
