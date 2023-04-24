@@ -48,11 +48,11 @@ export const Header = ({ usuario }) => {
 			titlee = emailU ? ("Hola, " + emailU) : ("Hola, " + usuario.email);	
 	}
 	useEffect(() => {
-		
+		window.onload = MostrarE();
 		console.log('UseEffect de Header: ',emailU);
 	})
 
-
+	window.onload = MostrarE();
 	return (
 		<>
 			<div className='cabecera'>
@@ -120,7 +120,7 @@ export const Header = ({ usuario }) => {
 							</div>
 						</div>
 					</div>
-					<button onClick={() => MostrarE()}>Obtener Email</button>
+					{/* <button onClick={() => MostrarE()}>Obtener Email</button> */}
 
 
 				</header>
