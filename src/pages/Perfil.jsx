@@ -90,7 +90,7 @@ export const Perfil = ({ usuario }) => {
                   type="text"
                   id='usuario'
                   name='usuario'
-                  defaultValue={usuarios.nombre}
+                  defaultValue={usuarios.nombre}  
                   disabled
                 />
 

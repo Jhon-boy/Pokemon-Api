@@ -67,7 +67,7 @@ export const CreateCount = () => {
         } else {
             try {
                 createUserWithEmailAndPassword(auth, emailRef, passwordRef);
-                await AñadirUsuario(user).catch(e => {
+                await   AñadirUsuario(user).catch(e => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',

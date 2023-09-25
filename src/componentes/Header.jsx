@@ -6,13 +6,13 @@ import { BsFilter } from "react-icons/bs";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom'
-import { getUsuario } from '../server/firebaseController';
+import { getUsuario  } from '../server/firebaseController';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 import { BsFillPersonXFill, BsSearch, BsPersonAdd } from "react-icons/bs"
 
-
+	
 export const Header = ({ usuario }) => {
 	const auth = getAuth();
 	const { active, setActive } = useContext(PokemonContext);

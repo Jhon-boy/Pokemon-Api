@@ -28,7 +28,7 @@ function AppRouter() {
   const [usuario, setUsuario] = React.useState(null);
 
   // const logeo = () =>{
-      onAuthStateChanged(auth, (usuarioFirebase) => {
+  onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
       setUsuario(usuarioFirebase);
     } else {
@@ -38,15 +38,14 @@ function AppRouter() {
 
   // }
 
-
   useEffect(() => {
     onAuthStateChanged(auth, (usuarioFirebase) => {
       if (usuarioFirebase) {
         setUsuario(usuarioFirebase);
-      }  else{
+      } else {
         setUsuario(null);
       }
-    
+
     }
     );
   });
@@ -56,13 +55,13 @@ function AppRouter() {
       <Route path="/login" element={<Login />} />
       <Route >
         <Route element={<ProtectedRoute usuario={usuario} />}>
-          <Route   path='/' element={<Header usuario={usuario} />} >
-            <Route index  element={<Home />} />
+          <Route path='/' element={<Header usuario={usuario} />} >
+            <Route index element={<Home />} />
             <Route path='pokemon/:id' element={<PokemonPage />} />
             <Route path='search' element={<SearchPage />} />
-            <Route path='infoPage' element={ <InfoPage />} />
-            <Route path='contactos' element={ <ContactForm />} />
-            <Route path='perfil' element={ <Perfil usuario={usuario}/>} />
+            <Route path='infoPage' element={<InfoPage />} />
+            <Route path='contactos' element={<ContactForm />} />
+            <Route path='perfil' element={<Perfil usuario={usuario} />} />
           </Route>
         </Route>
       </Route>

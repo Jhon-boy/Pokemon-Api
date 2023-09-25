@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { InfoPokemon } from './InfoPokemon'
 import {BsXCircleFill } from 'react-icons/bs'
 import { primerMayuscula } from '../Opciones/ConfigsPage';
+
 export const CardPokemon = ({ pokemon }) => {
   const [modalShow, setModalShow] = useState(false);
 
@@ -44,8 +45,6 @@ export const CardPokemon = ({ pokemon }) => {
             </Link>
           </div>
           <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
-
-
         </div>
       </div>
     </>

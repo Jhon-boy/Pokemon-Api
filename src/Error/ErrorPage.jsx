@@ -8,7 +8,7 @@ export const ErrorPage = () => {
   const navigateTo = (path) => {
       history(path);
   }
-
+  
     return (
         <div>
             <div className='ErrorComponent container'>
